@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="原题链接题目大意对于给定的n，p，q，求$(\sum_{i=1}^n{q^i})&amp;ensp;mod &amp;ensp; p$简单来说就是等比数列求和取余 解题思路 很自然的想到用等比数列求和公式$$Sum=a_1*\frac{1-q^n}{1-q}=\frac{q^{n+1}-q}{q-1}&amp;ensp;mod&amp;ensp;p$$由同余定理可知这样做的难点就是将除法转化为乘法，也就是求$q-1$对模$p$时">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-21T11:53:57.622Z">
+<meta property="og:updated_time" content="2019-09-21T22:23:31.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Icebound and Sequence">
 <meta name="twitter:description" content="原题链接题目大意对于给定的n，p，q，求$(\sum_{i=1}^n{q^i})&amp;ensp;mod &amp;ensp; p$简单来说就是等比数列求和取余 解题思路 很自然的想到用等比数列求和公式$$Sum=a_1*\frac{1-q^n}{1-q}=\frac{q^{n+1}-q}{q-1}&amp;ensp;mod&amp;ensp;p$$由同余定理可知这样做的难点就是将除法转化为乘法，也就是求$q-1$对模$p$时">
@@ -200,9 +200,9 @@
 <li>分治的思想<br>首先可以考虑$n$为偶数的情况，$$Sum = (\sum_{i=1}^n{q^i})&ensp;mod &ensp; p =(q+q^2+q^3+…+q^n)&ensp;mod&ensp; p$$ </li>
 </ul>
 <p>$$=(q+q^2+…+q^{\frac{n}{2}})+q^{\frac{n}{2}}*(q+q^2+…+q^{\frac{n}{2}})&ensp;mod&ensp;p$$</p>
-<p>$$=(1+q^{\frac{n}{2}})*(q+q^2+…+q^{\frac{n}{2}})&ensp; mod &ensp; p$$<br>这样就将问题转化为了求$1—\frac{n}2$的等比数列求和，同理我们可以继续向下转化</p>
-<p>$$=(1+q^{\frac{n}{2}})*(1+q^{\frac{n}{4}})*(q+q^2+…+q^{\frac{n}{4}})&ensp; mod &ensp; p$$<br>对于n为奇数的情况我们只需要求数列到$q^{n-1}$的和，再用快速幂取模单独计算一下$q^n$即可</p>
-<p>时间复杂度$O(logn*logn)$</p>
+<p>$$=(1+q^{\frac{n}{2}})*(q+q^2+…+q^{\frac{n}{2}})&ensp; mod &ensp; p$$<br>这样就将问题转化为了求$1—\frac{n}2$的等比数列求和</p>
+<p>定义函数$f(q,n)$表示首项、公比都为$q$的等比数列前$n$项的和,那么就有$$f(q,n)=f(q,\frac{n}{2})*(1+q^{\frac{n}{2}})$$<br>递归求解即可</p>
+<p>对于n为奇数的情况:$$f(q,n)=f(q,n-1)+q^n$$<br>时间复杂度$O(logn*logn)$</p>
 <h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line"></span><br><span class="line">ll mod,n,q;</span><br><span class="line">int T;</span><br><span class="line"></span><br><span class="line">ll mod_pow(ll x,ll n,ll mod) </span><br><span class="line">&#123;</span><br><span class="line">    ll res=1;</span><br><span class="line">	x%=mod;</span><br><span class="line">    while(n&gt;0)</span><br><span class="line">    &#123;</span><br><span class="line">        if(n&amp;1)res= res * x%mod;</span><br><span class="line">        </span><br><span class="line">        x=x*x%mod;   </span><br><span class="line">        </span><br><span class="line">        n&gt;&gt;=1;      </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ll get_ans(ll qq,ll nn)</span><br><span class="line">&#123;</span><br><span class="line">	if(nn==1)return qq;</span><br><span class="line">	else if(nn==0)return 1;</span><br><span class="line"></span><br><span class="line">	if(nn&amp;1)</span><br><span class="line">	&#123;</span><br><span class="line">		return (get_ans(qq,nn&gt;&gt;1)*(1+mod_pow(q,nn&gt;&gt;1,mod))+mod_pow(q,nn,mod))%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		return ((get_ans(qq,nn&gt;&gt;1)*(1+mod_pow(q,nn&gt;&gt;1,mod)))%mod);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;T;</span><br><span class="line">	while(T--)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;q&gt;&gt;n&gt;&gt;mod;</span><br><span class="line">		</span><br><span class="line">		cout&lt;&lt;get_ans(q%mod,n)&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
@@ -213,7 +213,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-09-21T11:53:57.622Z" itemprop="dateUpdated">2019-09-21 19:53:57</time>
+    Last updated: <time datetime="2019-09-21T22:23:31.268Z" itemprop="dateUpdated">2019-09-22 06:23:31</time>
 </span><br>
 
 
