@@ -20,15 +20,19 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content>
-    <meta property="og:type" content="article">
+    <meta name="keywords" content="数论,逆元">
+    <meta name="description" content="逆元逆元(Inverse element)是群论中的一个概念，大致意思是指能消除另一种运算影响的元素，例如在实数的乘法运算中，乘x的逆元就是乘$\frac{1}{x}$。算法类一般需要求的是对于取模运算的除法逆元。 假设$a*b\equiv1\space mod \space p$,即a与b在$mod \space p$的意义下互为逆元，那么如果我们要求$x/a\space mod \space">
+<meta name="keywords" content="数论,逆元">
+<meta property="og:type" content="article">
 <meta property="og:title" content="逆元的求法">
 <meta property="og:url" content="http://yoursite.com/2019/09/24/逆元的求法/index.html">
 <meta property="og:site_name" content="凡所难求皆绝好">
+<meta property="og:description" content="逆元逆元(Inverse element)是群论中的一个概念，大致意思是指能消除另一种运算影响的元素，例如在实数的乘法运算中，乘x的逆元就是乘$\frac{1}{x}$。算法类一般需要求的是对于取模运算的除法逆元。 假设$a*b\equiv1\space mod \space p$,即a与b在$mod \space p$的意义下互为逆元，那么如果我们要求$x/a\space mod \space">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-23T17:46:24.672Z">
+<meta property="og:updated_time" content="2019-09-24T13:38:23.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逆元的求法">
+<meta name="twitter:description" content="逆元逆元(Inverse element)是群论中的一个概念，大致意思是指能消除另一种运算影响的元素，例如在实数的乘法运算中，乘x的逆元就是乘$\frac{1}{x}$。算法类一般需要求的是对于取模运算的除法逆元。 假设$a*b\equiv1\space mod \space p$,即a与b在$mod \space p$的意义下互为逆元，那么如果我们要求$x/a\space mod \space">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -159,6 +163,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逆元"><span class="post-toc-number">1.</span> <span class="post-toc-text">逆元</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逆元的求法"><span class="post-toc-number">2.</span> <span class="post-toc-text">逆元的求法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-拓展欧几里得求逆元"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.拓展欧几里得求逆元</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-费马小定理-欧拉定理"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.费马小定理/欧拉定理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-线性递推求逆元"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3.线性递推求逆元</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-逆元的求法"
   class="post-article article-type-post fade" itemprop="blogPost">
@@ -179,7 +190,37 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            
+            <h2 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h2><p>逆元(Inverse element)是群论中的一个概念，大致意思是指能消除另一种运算影响的元素，例如在实数的乘法运算中，乘x的逆元就是乘$\frac{1}{x}$。算法类一般需要求的是对于取模运算的除法逆元。</p>
+<p>假设$a*b\equiv1\space mod \space p$,即a与b在$mod \space p$的意义下互为逆元，那么如果我们要求$x/a\space mod \space p$就可以转化为$x*b\space mod \space p$，<strong>求逆元必须满足$a$与$p$是互质的，否则不存在逆元</strong></p>
+<h2 id="逆元的求法"><a href="#逆元的求法" class="headerlink" title="逆元的求法"></a>逆元的求法</h2><h3 id="1-拓展欧几里得求逆元"><a href="#1-拓展欧几里得求逆元" class="headerlink" title="1.拓展欧几里得求逆元"></a>1.拓展欧几里得求逆元</h3><ul>
+<li>原理<br>$a*b\space\equiv\space 1(mod\space p)$可转化为$a*b+k*p=1$<br>则我们可以利用拓展欧几里得对于已知的互质两数$a$与$p$求的一组$b$与$k$</li>
+<li>代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">typedef long long ll;</span><br><span class="line">ll exgcd(ll a,ll b,ll &amp;x,ll &amp;y)//扩展欧几里得算法 </span><br><span class="line">&#123;</span><br><span class="line">	if(b==0)</span><br><span class="line">	&#123;</span><br><span class="line">        x=1,y=0;</span><br><span class="line">		return a;</span><br><span class="line">    &#125;</span><br><span class="line">  	ll ret=exgcd(b,a%b,y,x);</span><br><span class="line">    y-=a/b*x;</span><br><span class="line">    return ret;</span><br><span class="line">&#125;</span><br><span class="line">ll getInv(int a,int mod)//求a在mod下的逆元，不存在逆元返回-1 </span><br><span class="line">&#123;</span><br><span class="line">    ll x,y;</span><br><span class="line">    ll d=exgcd(a,mod,x,y);</span><br><span class="line">    return d==1?(x%mod+mod)%mod:-1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：$O(logn)$</li>
+<li>适用范围：只要存在逆元即可求，适用于个数不多但是mod很大的时候，也是最常见的一种求逆元的方法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-费马小定理-欧拉定理"><a href="#2-费马小定理-欧拉定理" class="headerlink" title="2.费马小定理/欧拉定理"></a>2.费马小定理/欧拉定理</h3><ul>
+<li><p>原理<br>费马小定理：若p为素数，则有$a^{p-1}\equiv\space 1(mod\space p)$<br>所以可以推得$a*a^{p-2}\space\equiv\space 1(mod \space p)$<br>即$a^{p-2}$是$a$的逆元<br>欧拉定理:若$a$、$p$互质，则有$a^{\varphi (p)}\equiv 1 \space (mod \space p)$   『$\varphi (p)$是$p$的欧拉函数值』<br>所以$a^{\varphi (p)-1}*a\equiv 1 \space (mod \space p)$<br>即$a^{\varphi (p)-1}$是$a$的逆元<br>费马小定律其实就是p为质数时的情况</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ll qkpow(ll a,ll p,ll mod)</span><br><span class="line">&#123;</span><br><span class="line">    ll t=1,tt=a%mod;</span><br><span class="line">    while(p)</span><br><span class="line">    &#123;</span><br><span class="line">        if(p&amp;1)t=t*tt%mod;</span><br><span class="line">        tt=tt*tt%mod;</span><br><span class="line">        p&gt;&gt;=1;</span><br><span class="line">    &#125; </span><br><span class="line">    return t;</span><br><span class="line">&#125;</span><br><span class="line">ll getInv(ll a,ll mod)</span><br><span class="line">&#123;</span><br><span class="line">    return qkpow(a,mod-2,mod);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：$O(logmod)$</li>
+<li>适用范围：一般mod为素数时使用，比扩欧更快而且好写，但如果是合数则需要额外计算欧拉函数值</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-线性递推求逆元"><a href="#3-线性递推求逆元" class="headerlink" title="3.线性递推求逆元"></a>3.线性递推求逆元</h3><ul>
+<li>原理<br>设$p$为模数，i为待求的逆元，我们求的是$i^{-1}$在$mod \space p$意义下的值<br>$p=k*i+r 令r&lt;i,则k=p/i，r=p%i$<br>$k*i+r \equiv\space 0(mod\space p)$<br>$k*r^{-1}+i^{-1}\equiv 0(mod\space p)$<br>$i^{-1}\equiv -k*r^{-1}(mod\space p)$<br>$i^{-1}\equiv -p/i*inv[p\space mod \space i] $<br>没看太懂能用就行</li>
+<li>代码<figure class="highlight plain"><figcaption><span>线性求逆元</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//调用前需要预处理inv数组并先对除数模mod</span><br><span class="line">ll inv[mod+5];</span><br><span class="line">void getInv(ll mod)</span><br><span class="line">&#123;</span><br><span class="line">    	inv[1]=1;</span><br><span class="line">    	for(int i=2;i&lt;mod;i++)</span><br><span class="line">        inv[i]=(mod-mod/i)*inv[mod%i]%mod;</span><br><span class="line">&#125;</span><br><span class="line">		</span><br></pre></td></tr></table></figure>
+<pre><code>+  时间复杂度：$O(n)$
++  适用范围：mod数是不大的素数而且多次调用</code></pre></li>
+</ul>
+<figure class="highlight plain"><figcaption><span>递归求逆元</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ll inv(ll i)</span><br><span class="line">&#123;</span><br><span class="line">	if(i==1)return 1;</span><br><span class="line">	return (mod-mod/i)*inv(mod%i)%mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>+  时间复杂度：$O(logmod)$
++  适用范围：mod数是素数</code></pre>
         </div>
 
         <blockquote class="post-copyright">
@@ -187,7 +228,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-09-23T17:46:24.672Z" itemprop="dateUpdated">2019-09-24 01:46:24</time>
+    Last updated: <time datetime="2019-09-24T13:38:23.947Z" itemprop="dateUpdated">2019-09-24 21:38:23</time>
 </span><br>
 
 
@@ -207,6 +248,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">数论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/逆元/">逆元</a></li></ul>
+
 
             
 
@@ -215,7 +258,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/24/Take-Apples/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Take Apples</h4>
+      </a>
+    </div>
   
 
   

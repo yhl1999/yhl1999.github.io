@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>博弈问题 | 凡所难求皆绝好</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="博弈,nim博弈,bash博弈">
+    <meta name="description" content="1.nim博弈规则通常的nim游戏的定义是这样子的：有若干堆石子，每堆石子的数量都是有限的，Player1与Player2轮流移动这些石子，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。 策略定义P-position代表后手必胜的局面，N-position代表先手必胜的局面，对于一般的nim游戏有如下的必胜">
+<meta name="keywords" content="博弈,nim博弈,bash博弈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博弈问题">
+<meta property="og:url" content="http://yoursite.com/2019/09/25/nim博弈问题/index.html">
+<meta property="og:site_name" content="凡所难求皆绝好">
+<meta property="og:description" content="1.nim博弈规则通常的nim游戏的定义是这样子的：有若干堆石子，每堆石子的数量都是有限的，Player1与Player2轮流移动这些石子，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。 策略定义P-position代表后手必胜的局面，N-position代表先手必胜的局面，对于一般的nim游戏有如下的必胜">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-09-25T16:32:51.872Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博弈问题">
+<meta name="twitter:description" content="1.nim博弈规则通常的nim游戏的定义是这样子的：有若干堆石子，每堆石子的数量都是有限的，Player1与Player2轮流移动这些石子，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。 策略定义P-position代表后手必胜的局面，N-position代表先手必胜的局面，对于一般的nim游戏有如下的必胜">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yhl1999</h5>
+          <a href="mailto:260105031@qq.com" title="260105031@qq.com" class="mail">260105031@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">博弈问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">博弈问题</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-25T08:47:57.000Z" itemprop="datePublished" class="page-time">
+  2019-09-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-nim博弈"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.nim博弈</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#规则"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">策略</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-K-nim博弈"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.K-nim博弈</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#规则-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略-1"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">策略</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-K-L-nim博弈"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.K-L-nim博弈</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#规则-2"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略-2"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">策略</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-bash博弈"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.bash博弈</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#规则-3"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略-3"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">策略</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-bash博弈增强版"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.bash博弈增强版</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#规则-4"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#策略-4"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">策略</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-nim博弈问题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">博弈问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-25 16:47:57" datetime="2019-09-25T08:47:57.000Z"  itemprop="datePublished">2019-09-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="1-nim博弈"><a href="#1-nim博弈" class="headerlink" title="1.nim博弈"></a>1.nim博弈</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p>通常的nim游戏的定义是这样子的：有若干堆石子，每堆石子的数量都是有限的，Player1与Player2轮流移动这些石子，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。</p>
+<h3 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h3><p>定义P-position代表后手必胜的局面，N-position代表先手必胜的局面，对于一般的nim游戏有如下的必胜策略：<br><strong>对于一个Nim游戏的局面(a1,a2,…,an)，它是P-position当且仅当a1^a2^…^an=0，其中^表示异或(xor)运算，$a_i$代表第i堆石子的个数。</strong></p>
+<h2 id="2-K-nim博弈"><a href="#2-K-nim博弈" class="headerlink" title="2.K-nim博弈"></a>2.K-nim博弈</h2><h3 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h3><p>在一般的nim博弈的基础上增加一条限制：<br>P1与P2每次只能拿不超过K个石子</p>
+<h3 id="策略-1"><a href="#策略-1" class="headerlink" title="策略"></a>策略</h3><p>将每堆石子数对$(K+1)$取模后，就可转化为一般的nim游戏</p>
+<h2 id="3-K-L-nim博弈"><a href="#3-K-L-nim博弈" class="headerlink" title="3.K-L-nim博弈"></a>3.K-L-nim博弈</h2><h3 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h3><p>在一般的nim博弈的基础上增加一条限制：<br>先手P1每次不能拿走k个石子(但可拿走多于或者少于k个石子)，后手P2不能拿走l个石子(但可拿走多于或者少于l个石子)，如果轮到某个人时所有的石子堆都已经被拿空了，则判负。</p>
+<h3 id="策略-2"><a href="#策略-2" class="headerlink" title="策略"></a>策略</h3><p>先要了解下SG(Sprague-Grundy)函数的定义：</p>
+<blockquote><p>首先定义mex(minimal excludant)运算，这是施加于一个集合的运算，表示最小的不属于这个集合的非负整数。例如mex{0,1,2,4}=3、mex{2,3,5}=0、mex{}=0。<br>这一步应该是非常简单的，就是定义了新的运算为mex。<br>对于任意状态 x ， 定义 SG(x) = mex(F)，其中F 是 x 后继状态的SG函数值的集合（就是上述mex中的数值）。最后返回值（也就是SG(X)）为0为必败点，不为零必胜点。<br>进一步解释一下F，就是题意中给出的可以移动的次数。举个例子来说，一堆石子，每次只能拿1，3，5，7个，那么S数组就是1，3，5，7。</p>
+</blockquote>
+
+<ul>
+<li><p>K与L相等的情况<br>对于石子数为$x$的单堆，其SG函数值为:<br>$$<br>G(x)=\begin{cases}<br>\lfloor \frac{x}{2K} \rfloor K+(x\% 2K), &amp; 0&lt;=(x \%  2K)&lt;=K-1 \\<br>\lfloor \frac{x} {2K} \rfloor K+(x \%  2K)-K,&amp; K&lt;=(x \%  2K)&lt;=2K-1<br>\end{cases}<br>$$<br>对于任何一个状态$$S=(x_1,x_2,x_3,…,x_n)$$可将其看成是n个单堆的Nim博弈的结合,分别求出这n个单堆的SG函数值，再做异或运算，若得到的值为0，则初始状态$S$为P状态，否则为N状态。</p>
+</li>
+<li><p>K与L不相等的情况<br>假设所有的x均大于$min(K,L)$,否则就变成了一般的nim博弈</p>
+<ul>
+<li>若K&gt;L,则$S$为N状态</li>
+<li>若K&lt;L,如果在P1走完第一步以后，剩余状态是在普通的nim博弈里的P态，并且$max(x_1,x_2,…,x_n)&lt;K$，那么P1有必胜的策略,否则P2有必胜的策略。</li>
+</ul>
+</li>
+</ul>
+<p>详细证明过程：<a href="https://image.hanspub.org/Html/2-2620391_20583.htm" target="_blank" rel="noopener">https://image.hanspub.org/Html/2-2620391_20583.htm</a></p>
+<h2 id="4-bash博弈"><a href="#4-bash博弈" class="headerlink" title="4.bash博弈"></a>4.bash博弈</h2><h3 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h3><p>总共n个物品，P1与P2轮流取，每个人每次都可以取走1~m个物品，取走最后一个物品的人胜利。</p>
+<h3 id="策略-3"><a href="#策略-3" class="headerlink" title="策略"></a>策略</h3><p>若$n\%(m+1)==0$则起始状态为P状态，否则为N状态</p>
+<h2 id="5-bash博弈增强版"><a href="#5-bash博弈增强版" class="headerlink" title="5.bash博弈增强版"></a>5.bash博弈增强版</h2><h3 id="规则-4"><a href="#规则-4" class="headerlink" title="规则"></a>规则</h3><p>在一般bash博弈的基础上增加一条限制：<br>给定数集$S$,每次可取的石子数必须满足$x\in S$</p>
+<h3 id="策略-4"><a href="#策略-4" class="headerlink" title="策略"></a>策略</h3><p>通过计算初始状态的SG函数值求解</p>
+<p>文章顺序有点问题，Bash应该放在nim前面会好些，另外提供一些补充内容的博客<br><a href="https://www.cnblogs.com/nanjoqin/p/10211576.html" target="_blank" rel="noopener">https://www.cnblogs.com/nanjoqin/p/10211576.html</a></p>
+<p>最后，关于SG函数的理解，P状态和N状态更严谨的定义为：</p>
+<ol>
+<li>无法进行任何移动的局面（也就是terminal position）是P-position</li>
+<li>能移动到P局面的局面即为N局面</li>
+<li>P局面只能移动到N局面(所有移动都导致N局面的局面为P局面)<br>所有ICG(公平组合游戏，局面对操作集无影响的游戏)的模型都可转化为一个DAG，一个局面即为DAG中的一个点，所以求出这个DAG所有点的SG函数值即可知道博弈中任意一个局面是P局面还是N局面，判断标准为SG(x)=0则局面x为P局面，否则为N局面。</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-09-25T16:32:51.872Z" itemprop="dateUpdated">2019-09-26 00:32:51</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="yhl1999">
+            yhl1999
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash博弈/">bash博弈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nim博弈/">nim博弈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博弈/">博弈</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/29/带花树模板/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">带花树模板</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/24/Take-Apples/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Take Apples</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yhl1999 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
