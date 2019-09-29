@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Paper Plane Fly Away | 凡所难求皆绝好</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="原题链接题目大意有$n$个男生和$n$个女生，男生的编号为$1{\sim} n$,女生的编号为$n+1{\sim}2n$女生坐在第一排，男生坐在第二排。男生的编号从左往右依次递增，现按顺序给出每个男生前面坐着的女生的编号，以及该男生喜欢的女生的编号，求每一对的连线上与其他男女的连线有多少个交点，题目保证每一个男生都有喜欢的女生且每个女生只会被一个男生喜欢。 解题思路我们可以不看女生的编号，只看女生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper Plane Fly Away">
+<meta property="og:url" content="http://yoursite.com/2019/09/23/Paper-Plane-Fly-Away/index.html">
+<meta property="og:site_name" content="凡所难求皆绝好">
+<meta property="og:description" content="原题链接题目大意有$n$个男生和$n$个女生，男生的编号为$1{\sim} n$,女生的编号为$n+1{\sim}2n$女生坐在第一排，男生坐在第二排。男生的编号从左往右依次递增，现按顺序给出每个男生前面坐着的女生的编号，以及该男生喜欢的女生的编号，求每一对的连线上与其他男女的连线有多少个交点，题目保证每一个男生都有喜欢的女生且每个女生只会被一个男生喜欢。 解题思路我们可以不看女生的编号，只看女生">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-09-23T17:45:13.484Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Paper Plane Fly Away">
+<meta name="twitter:description" content="原题链接题目大意有$n$个男生和$n$个女生，男生的编号为$1{\sim} n$,女生的编号为$n+1{\sim}2n$女生坐在第一排，男生坐在第二排。男生的编号从左往右依次递增，现按顺序给出每个男生前面坐着的女生的编号，以及该男生喜欢的女生的编号，求每一对的连线上与其他男女的连线有多少个交点，题目保证每一个男生都有喜欢的女生且每个女生只会被一个男生喜欢。 解题思路我们可以不看女生的编号，只看女生">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yhl1999</h5>
+          <a href="mailto:260105031@qq.com" title="260105031@qq.com" class="mail">260105031@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Paper Plane Fly Away</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Paper Plane Fly Away</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-23T07:56:44.000Z" itemprop="datePublished" class="page-time">
+  2019-09-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/2019河北省省赛/">2019河北省省赛</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/2019河北省省赛/E/">E</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原题链接"><span class="post-toc-number">1.</span> <span class="post-toc-text">原题链接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题目大意"><span class="post-toc-number">2.</span> <span class="post-toc-text">题目大意</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解题思路"><span class="post-toc-number">3.</span> <span class="post-toc-text">解题思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AC代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">AC代码</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Paper-Plane-Fly-Away"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Paper Plane Fly Away</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-23 15:56:44" datetime="2019-09-23T07:56:44.000Z"  itemprop="datePublished">2019-09-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/2019河北省省赛/">2019河北省省赛</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/2019河北省省赛/E/">E</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a><a href="https://ac.nowcoder.com/acm/contest/903/E" target="_blank" rel="noopener">原题链接</a></h2><h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><p>有$n$个男生和$n$个女生，男生的编号为$1{\sim} n$,女生的编号为$n+1{\sim}2n$<br>女生坐在第一排，男生坐在第二排。男生的编号从左往右依次递增，现按顺序给出每个男生前面坐着的女生的编号，以及该男生喜欢的女生的编号，求每一对的连线上与其他男女的连线有多少个交点，题目保证每一个男生都有喜欢的女生且每个女生只会被一个男生喜欢。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>我们可以不看女生的编号，只看女生所在的列号，设男生的列号表示为$x$，女生的列号为$y$,那么每一对互相喜欢的男女可以表示为点对$(x_i,y_i)$,若$(x_i-x_j)*(y_i-y_j)&lt;0$则说明第i对男女生的连线与第j对男女生的连线有交点。<br>因为男生的列号是有序的，即若$i&lt;j$则必有$x_i&lt;x_j$,所以对于$i&lt;j$的情况我们需要数出$y_i&gt;y_j(j\in[i+1,n])$的情况，也就是y数组的逆序对；同时也需要考虑到与前面的点对的交点，也就是说对于第$i$个数对我们要在$i&gt;j$的部分找$y_i&lt;y_i$的个数，在$i&lt;j$的部分找$y_i&gt;y_j$的个数，求和即是答案。<br>关于求逆序数的可以用树状数组或是用分治法求得</p>
+<a href="http://localhost:4000/2019/09/24/%E9%80%86%E5%BA%8F%E6%95%B0%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%B1%82%E6%B3%95/" title="/" target="_blank" rel="noopener">逆序数的两种求法</a>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><p>思路理解了,但是代码太丑了挖个坑睡觉起来重构一遍。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">typedef long long ll;</span><br><span class="line">const int maxn = 1e6;</span><br><span class="line">int n;</span><br><span class="line">int a[maxn];</span><br><span class="line">int b[maxn];</span><br><span class="line">int y[maxn];</span><br><span class="line">int c[maxn];</span><br><span class="line">pair&lt;int,int&gt; p1[maxn],p2[maxn];</span><br><span class="line"></span><br><span class="line">int lowbit(int x)</span><br><span class="line">&#123;return x&amp;(-x);&#125;</span><br><span class="line">void add(int i,int x)</span><br><span class="line">&#123;</span><br><span class="line">    while(i&lt;=n)</span><br><span class="line">    &#123;</span><br><span class="line">        c[i]+=x;</span><br><span class="line">        i+=lowbit(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//返回前x项的和</span><br><span class="line">int sum(int x)</span><br><span class="line">&#123;</span><br><span class="line">    int ans=0;</span><br><span class="line">    while(x&gt;0)</span><br><span class="line">    &#123;</span><br><span class="line">        ans+=c[x];</span><br><span class="line">        x-=lowbit(x);</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int nx_num[maxn];</span><br><span class="line">int zx_num[maxn];</span><br><span class="line">int ans[maxn];</span><br><span class="line">void get_nx(int nx[],pair&lt;int,int&gt; p[])</span><br><span class="line">&#123;</span><br><span class="line">    for(int i=1;i&lt;=n;++i)c[i]=0;</span><br><span class="line"></span><br><span class="line">    for(int i=1;i&lt;=n;++i)&#123;</span><br><span class="line">        int wz=p[i].second;</span><br><span class="line">        add(wz,1);</span><br><span class="line">        nx[wz]=sum(wz-1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line"></span><br><span class="line">    int aa;</span><br><span class="line">    for(int i=1;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;aa&gt;&gt;b[i];  //b[i]表示第i个男生喜欢的女生的编号</span><br><span class="line">        a[aa]=i;        //a[aa]表示编号为aa的女生所在的列号</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for(ll i=1;i&lt;=n;++i)&#123;</span><br><span class="line">        y[i]=a[b[i]];   //y[i]表示第i个男生喜欢的女生所在的列号</span><br><span class="line">        p1[i].first=n-y[i]+1;</span><br><span class="line">        p1[i].second=i;</span><br><span class="line">        p2[n-i+1].first=y[i];</span><br><span class="line">        p2[n-i+1].second=n-i+1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sort(p1+1,p1+n+1);</span><br><span class="line">    sort(p2+1,p2+1+n);</span><br><span class="line">    get_nx(nx_num,p1);</span><br><span class="line">    get_nx(zx_num,p2);</span><br><span class="line"></span><br><span class="line">    for(int i=1;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ans[i]=nx_num[i]+zx_num[n-i+1];</span><br><span class="line">        cout&lt;&lt;ans[i]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-09-23T17:45:13.484Z" itemprop="dateUpdated">2019-09-24 01:45:13</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="yhl1999">
+            yhl1999
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/24/逆序数的两种求法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">逆序数的两种求法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/23/分治/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">分治</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yhl1999 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

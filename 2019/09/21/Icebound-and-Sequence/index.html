@@ -20,16 +20,16 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="数论,等比数列求和,分治">
+    <meta name="keywords" content="数论,等比数列求和,分治,矩阵快速幂">
     <meta name="description" content="原题链接题目大意对于给定的n，p，q，求$(\sum_{i=1}^n{q^i})&amp;ensp;mod &amp;ensp; p$简单来说就是等比数列求和取余 解题思路 很自然的想到用等比数列求和公式$$Sum=a_1*\frac{1-q^n}{1-q}=\frac{q^{n+1}-q}{q-1}&amp;ensp;mod&amp;ensp;p$$ 由同余定理可知这样做的难点就是将除法转化为乘法，也就是求$q-1$对模$p$">
-<meta name="keywords" content="数论,等比数列求和,分治">
+<meta name="keywords" content="数论,等比数列求和,分治,矩阵快速幂">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Icebound and Sequence">
 <meta property="og:url" content="http://yoursite.com/2019/09/21/Icebound-and-Sequence/index.html">
 <meta property="og:site_name" content="凡所难求皆绝好">
 <meta property="og:description" content="原题链接题目大意对于给定的n，p，q，求$(\sum_{i=1}^n{q^i})&amp;ensp;mod &amp;ensp; p$简单来说就是等比数列求和取余 解题思路 很自然的想到用等比数列求和公式$$Sum=a_1*\frac{1-q^n}{1-q}=\frac{q^{n+1}-q}{q-1}&amp;ensp;mod&amp;ensp;p$$ 由同余定理可知这样做的难点就是将除法转化为乘法，也就是求$q-1$对模$p$">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-22T17:32:34.240Z">
+<meta property="og:updated_time" content="2019-09-23T17:49:58.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Icebound and Sequence">
 <meta name="twitter:description" content="原题链接题目大意对于给定的n，p，q，求$(\sum_{i=1}^n{q^i})&amp;ensp;mod &amp;ensp; p$简单来说就是等比数列求和取余 解题思路 很自然的想到用等比数列求和公式$$Sum=a_1*\frac{1-q^n}{1-q}=\frac{q^{n+1}-q}{q-1}&amp;ensp;mod&amp;ensp;p$$ 由同余定理可知这样做的难点就是将除法转化为乘法，也就是求$q-1$对模$p$">
@@ -197,7 +197,7 @@
             <h2 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a><a href="https://ac.nowcoder.com/acm/contest/903/B" target="_blank" rel="noopener">原题链接</a></h2><h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><p>对于给定的n，p，q，求$(\sum_{i=1}^n{q^i})&ensp;mod &ensp; p$<br>简单来说就是等比数列求和取余</p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
 <li><p>很自然的想到用等比数列求和公式$$Sum=a_1*\frac{1-q^n}{1-q}=\frac{q^{n+1}-q}{q-1}&ensp;mod&ensp;p$$</p>
-<p>由同余定理可知这样做的难点就是将除法转化为乘法，也就是求$q-1$对模$p$时的逆元，但是题目所给数据无法保证$gcd(q-1,p)=1$,所以逆元不一定存在。<br>(关于<a href="https://blog.csdn.net/xiaoming_p/article/details/79644386" title="逆元求法总结" target="_blank" rel="noopener">求逆元的博客</a>日后补上)<br>可以利用公式$$a/b \space mod\space c = a \space mod\space(b*c)\space/b$$<br>可将求和公式转化为$$Sum=(q^{n+1}+q)\space mod \space [p*(q-1)] \space /(q-1)$$</p>
+<p>由同余定理可知这样做的难点就是将除法转化为乘法，也就是求$q-1$对模$p$时的逆元，但是题目所给数据无法保证$gcd(q-1,p)=1$,所以逆元不一定存在。<br>(关于<a href="https://blog.csdn.net/xiaoming_p/article/details/79644386" title="逆元求法总结" target="_blank" rel="noopener">求逆元的博客</a>日后补上<a href="http://localhost:4000/2019/09/24/%E9%80%86%E5%85%83%E7%9A%84%E6%B1%82%E6%B3%95/" target="_blank" rel="noopener">待填坑</a>)<br>可以利用公式$$a/b \space mod\space c = a \space mod\space(b*c)\space/b$$<br>可将求和公式转化为$$Sum=(q^{n+1}+q)\space mod \space [p*(q-1)] \space /(q-1)$$</p>
 </li>
 <li><p>分治的思想<br>  首先可以考虑$n$为偶数的情况，$$Sum = (\sum_{i=1}^n{q^i})&ensp;mod &ensp; p =(q+q^2+q^3+…+q^n)&ensp;mod&ensp; p$$<br>  $$=(q+q^2+…+q^{\frac{n}{2}})+q^{\frac{n}{2}}*(q+q^2+…+q^{\frac{n}{2}})&ensp;mod&ensp;p$$</p>
 <p>  $$=(1+q^{\frac{n}{2}})*(q+q^2+…+q^{\frac{n}{2}})&ensp; mod &ensp; p$$<br>  这样就将问题转化为了求$1—\frac{n}2$的等比数列求和</p>
@@ -218,7 +218,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-09-22T17:32:34.240Z" itemprop="dateUpdated">2019-09-23 01:32:34</time>
+    Last updated: <time datetime="2019-09-23T17:49:58.323Z" itemprop="dateUpdated">2019-09-24 01:49:58</time>
 </span><br>
 
 
@@ -238,7 +238,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分治/">分治</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">数论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/等比数列求和/">等比数列求和</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分治/">分治</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">数论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/矩阵快速幂/">矩阵快速幂</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/等比数列求和/">等比数列求和</a></li></ul>
 
 
             
