@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>最小路径覆盖问题 | 敏酱upup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="网络流,最小路径覆盖">
+    <meta name="description" content="原题链接题目大意求给定图的最小路径覆盖，并输出对应的路径和路径条数。最小路径覆盖：通俗来说就是在一个有向图中,找出最少的路径,使得这些路径经过了所有的点。 解题思路最小路径覆盖数=|E|-二分图最大匹配数(|E|为有向图的总边数)将每个点拆为入点和出点，连边(a,b)时由a的入点指向b的出点，再将网络流的源点指向入点，出点指向汇点，跑最大流即可得到二分图最大匹配数。求解路径：每条路径的起点与源点间">
+<meta name="keywords" content="网络流,最小路径覆盖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小路径覆盖问题">
+<meta property="og:url" content="http://yoursite.com/2019/10/02/最小路径覆盖问题/index.html">
+<meta property="og:site_name" content="敏酱upup">
+<meta property="og:description" content="原题链接题目大意求给定图的最小路径覆盖，并输出对应的路径和路径条数。最小路径覆盖：通俗来说就是在一个有向图中,找出最少的路径,使得这些路径经过了所有的点。 解题思路最小路径覆盖数=|E|-二分图最大匹配数(|E|为有向图的总边数)将每个点拆为入点和出点，连边(a,b)时由a的入点指向b的出点，再将网络流的源点指向入点，出点指向汇点，跑最大流即可得到二分图最大匹配数。求解路径：每条路径的起点与源点间">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-03T07:26:41.508Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最小路径覆盖问题">
+<meta name="twitter:description" content="原题链接题目大意求给定图的最小路径覆盖，并输出对应的路径和路径条数。最小路径覆盖：通俗来说就是在一个有向图中,找出最少的路径,使得这些路径经过了所有的点。 解题思路最小路径覆盖数=|E|-二分图最大匹配数(|E|为有向图的总边数)将每个点拆为入点和出点，连边(a,b)时由a的入点指向b的出点，再将网络流的源点指向入点，出点指向汇点，跑最大流即可得到二分图最大匹配数。求解路径：每条路径的起点与源点间">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yhl1999</h5>
+          <a href="mailto:260105031@qq.com" title="260105031@qq.com" class="mail">260105031@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">最小路径覆盖问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">最小路径覆盖问题</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-02T13:39:55.000Z" itemprop="datePublished" class="page-time">
+  2019-10-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/网络流24题/">网络流24题</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#原题链接"><span class="post-toc-number">1.</span> <span class="post-toc-text">原题链接</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#题目大意"><span class="post-toc-number">2.</span> <span class="post-toc-text">题目大意</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解题思路"><span class="post-toc-number">3.</span> <span class="post-toc-text">解题思路</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AC代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">AC代码</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-最小路径覆盖问题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">最小路径覆盖问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-02 21:39:55" datetime="2019-10-02T13:39:55.000Z"  itemprop="datePublished">2019-10-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/网络流24题/">网络流24题</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a><a href="https://www.luogu.org/problem/P2764" target="_blank" rel="noopener">原题链接</a></h1><h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>求给定图的最小路径覆盖，并输出对应的路径和路径条数。<br>最小路径覆盖：<br>通俗来说就是在一个有向图中,找出最少的路径,使得这些路径经过了所有的点。</p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>最小路径覆盖数=|E|-二分图最大匹配数(|E|为有向图的总边数)<br>将每个点拆为入点和出点，连边(a,b)时由a的入点指向b的出点，再将网络流的源点指向入点，出点指向汇点，跑最大流即可得到二分图最大匹配数。<br>求解路径：<br>每条路径的起点与源点间有流量，路径中的点仅与路径上相邻的点有流量</p>
+<h1 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;queue&gt; </span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#define MAX_V 1000</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int INF = (unsigned int)(-1)&gt;&gt;1;</span><br><span class="line">struct edge &#123;</span><br><span class="line">	int to,cap,rev;</span><br><span class="line">	bool key; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">vector&lt;edge&gt; G[MAX_V]; </span><br><span class="line">int level[MAX_V]; </span><br><span class="line">int iter[MAX_V]; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void add_edge(int from,int to,int cap) &#123;</span><br><span class="line">	G[from].push_back((edge) &#123;</span><br><span class="line">		to,cap,G[to].size(),true</span><br><span class="line">	&#125;);</span><br><span class="line">	G[to].push_back((edge) &#123;</span><br><span class="line">		from,0,G[from].size()-1,false</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void bfs(int s) &#123;</span><br><span class="line">	memset(level,-1,sizeof(level));</span><br><span class="line"></span><br><span class="line">	queue&lt;int&gt; que;</span><br><span class="line"></span><br><span class="line">	level[s]=0;</span><br><span class="line"></span><br><span class="line">	que.push(s);</span><br><span class="line"></span><br><span class="line">	while(!que.empty()) &#123;</span><br><span class="line">		int v = que.front();</span><br><span class="line">		que.pop();</span><br><span class="line"></span><br><span class="line">		for(int i=0; i&lt;G[v].size(); i++) &#123;</span><br><span class="line">			edge &amp;e = G[v][i];</span><br><span class="line"></span><br><span class="line">			if(e.cap &gt; 0 &amp;&amp; level[e.to]&lt;0) &#123;</span><br><span class="line">				level[e.to] = level[v] +1;</span><br><span class="line">				que.push(e.to);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int dfs(int v,int t,int f) &#123;</span><br><span class="line">	if(v == t)return f;</span><br><span class="line"></span><br><span class="line">	for(int &amp;i=iter[v]; i&lt;G[v].size(); i++) &#123;</span><br><span class="line">		edge &amp;e = G[v][i];</span><br><span class="line">		if(e.cap &gt; 0 &amp;&amp; level[v] &lt; level[e.to]) &#123;</span><br><span class="line">			int d =dfs(e.to,t,min(f,e.cap));</span><br><span class="line"></span><br><span class="line">			if(d&gt;0) &#123;</span><br><span class="line">				e.cap -= d;</span><br><span class="line"></span><br><span class="line">				G[e.to][e.rev].cap += d;</span><br><span class="line"></span><br><span class="line">				return d;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int max_flow(int s, int t) &#123;</span><br><span class="line">	int flow = 0;</span><br><span class="line"></span><br><span class="line">	for(;;) &#123;</span><br><span class="line">		bfs(s);</span><br><span class="line"></span><br><span class="line">		if(level[t]&lt;0)return flow;</span><br><span class="line">		memset(iter,0,sizeof(iter));</span><br><span class="line"></span><br><span class="line">		int f;</span><br><span class="line"></span><br><span class="line">		while((f= dfs(s,t,INF))&gt;0) &#123;</span><br><span class="line">			flow += f;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int n,m;</span><br><span class="line"></span><br><span class="line">void dfs2(int v) </span><br><span class="line">&#123;</span><br><span class="line">	for(int i=0;i&lt;G[v].size();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		edge e = G[v][i];</span><br><span class="line">		</span><br><span class="line">		if(e.cap == 0 &amp;&amp; e.key==true)</span><br><span class="line">		&#123;</span><br><span class="line">			cout&lt;&lt;&quot; &quot;&lt;&lt;e.to-n;</span><br><span class="line">			</span><br><span class="line">			dfs2(e.to-n);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	int a,b;</span><br><span class="line">	int s=0,t=2*n+1;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		add_edge(s,i,1);</span><br><span class="line">		add_edge(i+n,t,1);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">		add_edge(a,b+n,1);</span><br><span class="line">	&#125;	</span><br><span class="line"></span><br><span class="line">	int ans = max_flow(s,t);</span><br><span class="line">	</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		edge &amp;e = G[i+n][0];</span><br><span class="line">		//cout&lt;&lt;i&lt;&lt;&quot;:&quot;&lt;&lt;e.cap&lt;&lt;endl;</span><br><span class="line">		if(e.cap == 1 &amp;&amp; e.key==true)</span><br><span class="line">		&#123;</span><br><span class="line">			cout&lt;&lt;i;</span><br><span class="line">			dfs2(i);</span><br><span class="line">			cout&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	cout&lt;&lt;n-ans&lt;&lt;endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-10-03T07:26:41.508Z" itemprop="dateUpdated">2019-10-03 15:26:41</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="yhl1999">
+            yhl1999
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最小路径覆盖/">最小路径覆盖</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络流/">网络流</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/03/飞行员配对方案问题/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">飞行员配对方案问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/02/Transport-Ship/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Transport Ship</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yhl1999 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
