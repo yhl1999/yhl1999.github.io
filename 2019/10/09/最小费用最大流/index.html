@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>最小费用最大流 | 敏酱upup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="模板123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263struct edge&amp;#123;    int to,cap,cost,rev;&amp;#125;;const int MAX_V = 1e5+7;int V;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小费用最大流">
+<meta property="og:url" content="http://yoursite.com/2019/10/09/最小费用最大流/index.html">
+<meta property="og:site_name" content="敏酱upup">
+<meta property="og:description" content="模板123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263struct edge&amp;#123;    int to,cap,cost,rev;&amp;#125;;const int MAX_V = 1e5+7;int V;">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-11T11:11:20.259Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最小费用最大流">
+<meta name="twitter:description" content="模板123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263struct edge&amp;#123;    int to,cap,cost,rev;&amp;#125;;const int MAX_V = 1e5+7;int V;">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yhl1999</h5>
+          <a href="mailto:260105031@qq.com" title="260105031@qq.com" class="mail">260105031@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">最小费用最大流</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">最小费用最大流</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-09T08:25:06.000Z" itemprop="datePublished" class="page-time">
+  2019-10-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#模板"><span class="post-toc-number">1.</span> <span class="post-toc-text">模板</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-最小费用最大流"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">最小费用最大流</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-09 16:25:06" datetime="2019-10-09T08:25:06.000Z"  itemprop="datePublished">2019-10-09</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> to,cap,cost,rev;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_V = <span class="number">1e5</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> V;          <span class="comment">//顶点数</span></span><br><span class="line"><span class="built_in">vector</span>&lt;edge&gt; G[MAX_V];  <span class="comment">//图的临接表表示</span></span><br><span class="line"><span class="keyword">int</span> dist[MAX_V];        <span class="comment">//最短距离</span></span><br><span class="line"><span class="keyword">int</span> prevv[MAX_V],preve[MAX_V];  <span class="comment">//最短路中的前驱节点和对应边</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//向图中增加一条从from到to容量为cap费用为cost的边</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_edge</span><span class="params">(<span class="keyword">int</span> from,<span class="keyword">int</span> to,<span class="keyword">int</span> cap,<span class="keyword">int</span> cost)</span></span>&#123;</span><br><span class="line">    G[from].push_back((edge)&#123;to,cap,cost,G[to].size()&#125;);</span><br><span class="line">    G[to].push_back((edge)&#123;from,<span class="number">0</span>,-cost,G[from].size()<span class="number">-1</span>&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求解从s到t流量为f的最小费用流</span></span><br><span class="line"><span class="comment">//如果不能再增广则返回-1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min_cost_flow</span><span class="params">(<span class="keyword">int</span> s,<span class="keyword">int</span> t,<span class="keyword">int</span> f)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(f&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">//利用Bellman-Ford算法求s到t的最短路</span></span><br><span class="line">        fill(dist,dist+V,INF);</span><br><span class="line">        dist[s]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> update = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">while</span>(update)&#123;</span><br><span class="line">            update=<span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> v=<span class="number">0</span>;v&lt;V;v++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dist[v]==INF)<span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;G[v].size();i++)&#123;</span><br><span class="line">                    edge &amp;e=G[v][i];</span><br><span class="line">                    <span class="keyword">if</span>(e.cap&gt;<span class="number">0</span>&amp;&amp; dist[e.to]&gt;dist[v]+e.cost)&#123;</span><br><span class="line">                        dist[e.to]=dist[v]+e.cost;</span><br><span class="line">                        prevv[e.to]=v;</span><br><span class="line">                        preve[e.to]=i;</span><br><span class="line">                        update=<span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(dist[t]==INF)&#123;</span><br><span class="line">            <span class="comment">//不能再增光</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//沿s到t的最短路尽量增广</span></span><br><span class="line">        <span class="keyword">int</span> d = f;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v = t;v!=s;v=prevv[v])&#123;</span><br><span class="line">            d=min(d,G[prevv[v]][preve[v]].cap);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        f-=d;</span><br><span class="line">        res += d*dist[t];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v=t;v!=s;v=prevv[v])&#123;</span><br><span class="line">            edge &amp;e = G[prevv[v]][preve[v]];</span><br><span class="line">            e.cap -=d;</span><br><span class="line">            G[v][e.rev].cap +=d;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-10-11T11:11:20.259Z" itemprop="dateUpdated">2019-10-11 19:11:20</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="yhl1999">
+            yhl1999
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/10/div2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">The LCMs Must be Large</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/09/太空飞行计划/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">̫�շ��мƻ�</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yhl1999 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

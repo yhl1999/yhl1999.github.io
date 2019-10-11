@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>The LCMs Must be Large | 敏酱upup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="原题链接题目大意有$n$个商店,每个商店有一个数字$a_i$. Dora每天都会去一些商店,在这一天里Swiper将会去剩下的那些Dora没去过的商店. 如果这一天里Dora去的所有的商店对应数字的最小公倍数,大于Swiper去的所有商店对应数字的最小公倍数, 则代表这一天是Dora胜利了. 询问对于接下来的m天里,给定每天Dora会去的商店的编号,是否存在一个数列$a_i$使Dora每天都能胜利">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The LCMs Must be Large">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/div2/index.html">
+<meta property="og:site_name" content="敏酱upup">
+<meta property="og:description" content="原题链接题目大意有$n$个商店,每个商店有一个数字$a_i$. Dora每天都会去一些商店,在这一天里Swiper将会去剩下的那些Dora没去过的商店. 如果这一天里Dora去的所有的商店对应数字的最小公倍数,大于Swiper去的所有商店对应数字的最小公倍数, 则代表这一天是Dora胜利了. 询问对于接下来的m天里,给定每天Dora会去的商店的编号,是否存在一个数列$a_i$使Dora每天都能胜利">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-10T15:57:09.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The LCMs Must be Large">
+<meta name="twitter:description" content="原题链接题目大意有$n$个商店,每个商店有一个数字$a_i$. Dora每天都会去一些商店,在这一天里Swiper将会去剩下的那些Dora没去过的商店. 如果这一天里Dora去的所有的商店对应数字的最小公倍数,大于Swiper去的所有商店对应数字的最小公倍数, 则代表这一天是Dora胜利了. 询问对于接下来的m天里,给定每天Dora会去的商店的编号,是否存在一个数列$a_i$使Dora每天都能胜利">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">yhl1999</h5>
+          <a href="mailto:260105031@qq.com" title="260105031@qq.com" class="mail">260105031@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">The LCMs Must be Large</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">The LCMs Must be Large</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-10T12:11:09.000Z" itemprop="datePublished" class="page-time">
+  2019-10-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/codeforces/">codeforces</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/codeforces/div2/">div2</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/codeforces/div2/561/">561</a></li></ul></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#原题链接"><span class="post-toc-number">1.</span> <span class="post-toc-text">原题链接</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#题目大意"><span class="post-toc-number">2.</span> <span class="post-toc-text">题目大意</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解题思路"><span class="post-toc-number">3.</span> <span class="post-toc-text">解题思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#lcm-最小公倍数"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">lcm(最小公倍数)</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-div2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">The LCMs Must be Large</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-10 20:11:09" datetime="2019-10-10T12:11:09.000Z"  itemprop="datePublished">2019-10-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/codeforces/">codeforces</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/codeforces/div2/">div2</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/codeforces/div2/561/">561</a></li></ul></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="原题链接"><a href="#原题链接" class="headerlink" title="原题链接"></a><a href="https://codeforces.com/contest/1166/problem/E" target="_blank" rel="noopener">原题链接</a></h1><h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有$n$个商店,每个商店有一个数字$a_i$.</p>
+<p>Dora每天都会去一些商店,在这一天里Swiper将会去剩下的那些Dora没去过的商店.</p>
+<p>如果这一天里Dora去的所有的商店对应数字的最小公倍数,大于Swiper去的所有商店对应数字的最小公倍数, 则代表这一天是Dora胜利了.</p>
+<p>询问对于接下来的m天里,给定每天Dora会去的商店的编号,是否存在一个数列$a_i$使Dora每天都能胜利.</p>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><h2 id="lcm-最小公倍数"><a href="#lcm-最小公倍数" class="headerlink" title="lcm(最小公倍数)"></a>lcm(最小公倍数)</h2><ul>
+<li>可通过分解两数的质因数,最小公倍数等于它们所有质因子的乘*积,如果有相同的质因子则取出现次数较多的.</li>
+<li>两数的乘积 = 两数的最小公倍数与最大公因数的乘积<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int lcm(int a,int b)&#123;return a*b/gcd(a,b);&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>性质:<br>$$\text{对于整数集A B}，lcm(B)\le lcm(A)\quad B\subset A$$</p>
+<p>定义$D_i$代表Dora第$i$天所去商店对应的数集,$S_i$为Swiper第$i$天所去商店对应的数集.</p>
+<p>首先我们考虑不存在$a_i$满足条件的情况:如果存在某两天$i$与$j$满足$D_i$与$D_j$完全不重合则不存在满足条件的数组$a_i$,因为如果$D_i$与$D_j$不重合则容易得知$D_j\subset S_i\quad D_i\subset S_j$,由前面的性质可以得知$lcm(D_i)\le lcm(S_j)\quad lcm(D_j)\le lcm(S_i)$</p>
+<p>假设有$lcm(D_i)&gt;lcm(S_i)$则有$lcm(D_i)&gt;lcm(S_i)\ge lcm(D_j)$</p>
+<p>若$lcm(D_j)&gt;lcm(D_j)$则又可推出$lcm(D_j)&gt;lcm(S_j)\ge lcm(D_i)$</p>
+<p>所以必不可能存在数集$a_i$满足条件.</p>
+<p>接下来考虑$a_i$存在的情况,首先生成$m$个不同的素数$p_1,p_2,…,p_m$,那么$a_i=\prod p_j$,$j$代表Dora在第$j$天访问商店$i$.</p>
+<p>证明:</p>
+<blockquote>
+<p>We know that on day $i$, Dora bought an integer from a store that she also visited on day $j$, and this number must be a multiple of $p_j$. So $lcm(Di)=p_1p_2…p_m$ for all $i$. On the other hand, $S_i$ contains no multiples of $p_i$, because they are all in $D_i$. So the $lcm$ of $S_i$ is strictly smaller.<br>Now we just need to check that any two days have a common store, which can be done in $O(nm2)$ by checking each pair of days and determining for each $i$ whether Dora visited both stores on day $i$ in $O(n)$. You can achieve a slight speedup if you check this using a bitset, but this wasn’t necessary to solve the problem.</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-10-10T15:57:09.762Z" itemprop="dateUpdated">2019-10-10 23:57:09</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="yhl1999">
+            yhl1999
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/11/data/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">data</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/09/最小费用最大流/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">最小费用最大流</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>yhl1999 &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
