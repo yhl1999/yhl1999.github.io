@@ -14,10 +14,10 @@
     
     
     
-    <title>第k短路 | 敏酱upup</title>
+    <title>第k短路 | blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
+    <meta name="theme-color" content="#46d7ec">
     
     
     <meta name="keywords" content="图论,A*搜索">
@@ -26,7 +26,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="第k短路">
 <meta property="og:url" content="http://yoursite.com/2019/10/07/第k短路/index.html">
-<meta property="og:site_name" content="敏酱upup">
+<meta property="og:site_name" content="blog">
 <meta property="og:description" content="原题链接题目大意求a到b的第k短路 解题思路A*搜索求k短路  我们知道在BFS中，第一次到达终点就是到终点的最短路，那么第k次到达终点，当然就是到终点的第k短路了。但是如果直接BFS搜索下去，时间复杂度会非常高，因此我们需要剪枝，怎么剪枝呢？  我们每次只需要取出每次到达终点最有希望的路径，就避开了一些没有意义的到其他点的路径。因此我们需要一个启发函数。令$f = x + h$(其中x为到当前点">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2019-10-07T02:37:03.067Z">
@@ -54,7 +54,7 @@
     <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
+          <img src="/img/timg.jpeg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">yhl1999</h5>
@@ -75,42 +75,21 @@
             <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
-                Archives
+                档案
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
-                Tags
+                标签
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/yscoder" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="http://www.weibo.com/ysweb" target="_blank" >
-                <i class="icon icon-lg icon-weibo"></i>
-                Weibo
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/custom"  >
-                <i class="icon icon-lg icon-link"></i>
-                测试
+                分类
               </a>
             </li>
         
@@ -126,16 +105,6 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">第k短路</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
         
         
     </div>
@@ -219,7 +188,7 @@
     
     <footer>
         <a href="http://yoursite.com">
-            <img src="/img/avatar.jpg" alt="yhl1999">
+            <img src="/img/timg.jpeg" alt="yhl1999">
             yhl1999
         </a>
     </footer>
@@ -252,9 +221,9 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2019/10/06/模拟退火求平面内n个点到某个点的最短距离和/" id="post-next" class="post-nav-link">
+      <a href="/2019/10/06/位运算总结/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">模拟退火求平面内n个点到某个点的最短距离和</h4>
+        <h4 class="title">位运算总结</h4>
       </a>
     </div>
   
@@ -330,26 +299,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </script>
 
 <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 

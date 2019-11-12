@@ -14,10 +14,10 @@
     
     
     
-    <title>博弈问题 | 敏酱upup</title>
+    <title>博弈问题 | blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
+    <meta name="theme-color" content="#46d7ec">
     
     
     <meta name="keywords" content="博弈,nim博弈,bash博弈">
@@ -26,10 +26,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="博弈问题">
 <meta property="og:url" content="http://yoursite.com/2019/09/25/nim博弈问题/index.html">
-<meta property="og:site_name" content="敏酱upup">
+<meta property="og:site_name" content="blog">
 <meta property="og:description" content="1.nim博弈规则通常的nim游戏的定义是这样子的：有若干堆石子，每堆石子的数量都是有限的，Player1与Player2轮流移动这些石子，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。 策略定义P-position代表后手必胜的局面，N-position代表先手必胜的局面，对于一般的nim游戏有如下的必胜">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-25T16:32:51.872Z">
+<meta property="og:updated_time" content="2019-10-16T14:29:15.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博弈问题">
 <meta name="twitter:description" content="1.nim博弈规则通常的nim游戏的定义是这样子的：有若干堆石子，每堆石子的数量都是有限的，Player1与Player2轮流移动这些石子，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。 策略定义P-position代表后手必胜的局面，N-position代表先手必胜的局面，对于一般的nim游戏有如下的必胜">
@@ -54,7 +54,7 @@
     <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
+          <img src="/img/timg.jpeg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">yhl1999</h5>
@@ -75,42 +75,21 @@
             <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
-                Archives
+                档案
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
-                Tags
+                标签
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/yscoder" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="http://www.weibo.com/ysweb" target="_blank" >
-                <i class="icon icon-lg icon-weibo"></i>
-                Weibo
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/custom"  >
-                <i class="icon icon-lg icon-link"></i>
-                测试
+                分类
               </a>
             </li>
         
@@ -126,16 +105,6 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">博弈问题</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
         
         
     </div>
@@ -196,9 +165,9 @@
 <h3 id="策略-1"><a href="#策略-1" class="headerlink" title="策略"></a>策略</h3><p>将每堆石子数对$(K+1)$取模后，就可转化为一般的nim游戏</p>
 <h2 id="3-K-L-nim博弈"><a href="#3-K-L-nim博弈" class="headerlink" title="3.K-L-nim博弈"></a>3.K-L-nim博弈</h2><h3 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h3><p>在一般的nim博弈的基础上增加一条限制：<br>先手P1每次不能拿走k个石子(但可拿走多于或者少于k个石子)，后手P2不能拿走l个石子(但可拿走多于或者少于l个石子)，如果轮到某个人时所有的石子堆都已经被拿空了，则判负。</p>
 <h3 id="策略-2"><a href="#策略-2" class="headerlink" title="策略"></a>策略</h3><p>先要了解下SG(Sprague-Grundy)函数的定义：</p>
-<blockquote><p>首先定义mex(minimal excludant)运算，这是施加于一个集合的运算，表示最小的不属于这个集合的非负整数。例如mex{0,1,2,4}=3、mex{2,3,5}=0、mex{}=0。<br>这一步应该是非常简单的，就是定义了新的运算为mex。<br>对于任意状态 x ， 定义 SG(x) = mex(F)，其中F 是 x 后继状态的SG函数值的集合（就是上述mex中的数值）。最后返回值（也就是SG(X)）为0为必败点，不为零必胜点。<br>进一步解释一下F，就是题意中给出的可以移动的次数。举个例子来说，一堆石子，每次只能拿1，3，5，7个，那么S数组就是1，3，5，7。</p>
+<blockquote>
+<p>首先定义mex(minimal excludant)运算，这是施加于一个集合的运算，表示最小的不属于这个集合的非负整数。例如mex{0,1,2,4}=3、mex{2,3,5}=0、mex{}=0。<br>这一步应该是非常简单的，就是定义了新的运算为mex。<br>对于任意状态 x ， 定义 SG(x) = mex(F)，其中F 是 x 后继状态的SG函数值的集合（就是上述mex中的数值）。最后返回值（也就是SG(X)）为0为必败点，不为零必胜点。<br>进一步解释一下F，就是题意中给出的可以移动的次数。举个例子来说，一堆石子，每次只能拿1，3，5，7个，那么S数组就是1，3，5，7。</p>
 </blockquote>
-
 <ul>
 <li><p>K与L相等的情况<br>对于石子数为$x$的单堆，其SG函数值为:<br>$$<br>G(x)=\begin{cases}<br>\lfloor \frac{x}{2K} \rfloor K+(x\% 2K), &amp; 0&lt;=(x \%  2K)&lt;=K-1 \\<br>\lfloor \frac{x} {2K} \rfloor K+(x \%  2K)-K,&amp; K&lt;=(x \%  2K)&lt;=2K-1<br>\end{cases}<br>$$<br>对于任何一个状态$$S=(x_1,x_2,x_3,…,x_n)$$可将其看成是n个单堆的Nim博弈的结合,分别求出这n个单堆的SG函数值，再做异或运算，若得到的值为0，则初始状态$S$为P状态，否则为N状态。</p>
 </li>
@@ -221,6 +190,10 @@
 <li>能移动到P局面的局面即为N局面</li>
 <li>P局面只能移动到N局面(所有移动都导致N局面的局面为P局面)<br>所有ICG(公平组合游戏，局面对操作集无影响的游戏)的模型都可转化为一个DAG，一个局面即为DAG中的一个点，所以求出这个DAG所有点的SG函数值即可知道博弈中任意一个局面是P局面还是N局面，判断标准为SG(x)=0则局面x为P局面，否则为N局面。</li>
 </ol>
+<p>SG函数模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//f[N]:可改变当前状态的方式，N为方式的种类，f[N]要在getSG之前先预处理</span><br><span class="line">//SG[]:0~n的SG函数值</span><br><span class="line">//S[]:为x后继状态的集合</span><br><span class="line">int f[N],SG[MAXN],S[MAXN];</span><br><span class="line">void  getSG(int n)&#123;</span><br><span class="line">    int i,j;</span><br><span class="line">    memset(SG,0,sizeof(SG));</span><br><span class="line">    //因为SG[0]始终等于0，所以i从1开始</span><br><span class="line">    for(i = 1; i &lt;= n; i++)&#123;</span><br><span class="line">        //每一次都要将上一状态 的 后继集合 重置</span><br><span class="line">        memset(S,0,sizeof(S));</span><br><span class="line">        for(j = 0; f[j] &lt;= i &amp;&amp; j &lt;= N; j++)</span><br><span class="line">            S[SG[i-f[j]]] = 1;  //将后继状态的SG函数值进行标记</span><br><span class="line">        for(j = 0;; j++) if(!S[j])&#123;   //查询当前后继状态SG值中最小的非零值</span><br><span class="line">            SG[i] = j;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
         </div>
 
@@ -229,7 +202,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-09-25T16:32:51.872Z" itemprop="dateUpdated">2019-09-26 00:32:51</time>
+    Last updated: <time datetime="2019-10-16T14:29:15.122Z" itemprop="dateUpdated">2019-10-16 22:29:15</time>
 </span><br>
 
 
@@ -238,7 +211,7 @@
     
     <footer>
         <a href="http://yoursite.com">
-            <img src="/img/avatar.jpg" alt="yhl1999">
+            <img src="/img/timg.jpeg" alt="yhl1999">
             yhl1999
         </a>
     </footer>
@@ -349,26 +322,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </script>
 
 <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 

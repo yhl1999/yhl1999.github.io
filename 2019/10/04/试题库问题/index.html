@@ -14,10 +14,10 @@
     
     
     
-    <title>试题库问题 | 敏酱upup</title>
+    <title>试题库问题 | blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
+    <meta name="theme-color" content="#46d7ec">
     
     
     <meta name="keywords" content="网络流,最大流">
@@ -26,7 +26,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="试题库问题">
 <meta property="og:url" content="http://yoursite.com/2019/10/04/试题库问题/index.html">
-<meta property="og:site_name" content="敏酱upup">
+<meta property="og:site_name" content="blog">
 <meta property="og:description" content="原题链接题目大意试题库有n道题，每道题有多个类别，现在要抽m道题组试卷，试卷对每种类型题目的数量有要求，每道题虽可以有多种类型，但却只能与一种类型相匹配。问是否有满足要求的组卷方案，若有则输出方案，若没有则输出“No Solution!”. 解题思路还是按对象与关系的思路分析，对象有：试卷、试题、类别;关系有：试卷对类别的数量要求、试题与类别的对应关系，试题的数量要求。建图：试卷到$类别i$连容量">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2019-10-04T04:24:51.956Z">
@@ -54,7 +54,7 @@
     <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
+          <img src="/img/timg.jpeg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">yhl1999</h5>
@@ -75,42 +75,21 @@
             <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
-                Archives
+                档案
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
-                Tags
+                标签
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/yscoder" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="http://www.weibo.com/ysweb" target="_blank" >
-                <i class="icon icon-lg icon-weibo"></i>
-                Weibo
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/custom"  >
-                <i class="icon icon-lg icon-link"></i>
-                测试
+                分类
               </a>
             </li>
         
@@ -126,16 +105,6 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">试题库问题</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
         
         
     </div>
@@ -221,7 +190,7 @@
     
     <footer>
         <a href="http://yoursite.com">
-            <img src="/img/avatar.jpg" alt="yhl1999">
+            <img src="/img/timg.jpeg" alt="yhl1999">
             yhl1999
         </a>
     </footer>
@@ -332,26 +301,6 @@ var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 </script>
 
 <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
